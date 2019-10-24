@@ -119,7 +119,7 @@ namespace FirstCoreApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { id = task.EmployeeId });
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName", task.EmployeeId);
             return View(task);
