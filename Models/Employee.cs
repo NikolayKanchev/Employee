@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,6 @@ namespace FirstCoreApp.Models
         [Column(TypeName = "varchar(100)")]
         [DisplayName("Office Location")]
         public string OfficeLocation { get; set; }
-
+        public IList<Task> Tasks { get; set; }
     }
 }

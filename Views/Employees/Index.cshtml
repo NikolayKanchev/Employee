@@ -45,6 +45,9 @@
                 <a asp-action="AddOrEdit" asp-route-id="@item.EmployeeId" class="mr-1">Edit</a> |
                 <a asp-action="Delete" onclick="return confirm('You are about to delete this record. Are you sure?')" asp-route-id="@item.EmployeeId" class="text-danger ml-1">Delete</a>
             </td>
+            <td>
+                @Html.ActionLink("Tasks", "Index", "Tasks", new { id = item.EmployeeId })
+            </td>
         </tr>
 }
     </tbody>

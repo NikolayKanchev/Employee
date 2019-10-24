@@ -14,5 +14,6 @@ namespace FirstCoreApp.Models
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Task> Tasks { get; set; }
     }
 }
