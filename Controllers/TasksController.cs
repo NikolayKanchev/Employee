@@ -64,10 +64,8 @@ namespace FirstCoreApp.Controllers
             {
                 _context.Add(task);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { id = task.EmployeeId });
             }
-            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName", task.EmployeeId);
-            //ViewData["EmployeeId"] = id;
             return View(task);
         }
 
@@ -84,7 +82,6 @@ namespace FirstCoreApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = id;
 
             return View(task);
         }
@@ -152,7 +149,7 @@ namespace FirstCoreApp.Controllers
             var task = await _context.Tasks.FindAsync(id);
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { id = task.EmployeeId });
         }
 
         private bool TaskExists(int id)
