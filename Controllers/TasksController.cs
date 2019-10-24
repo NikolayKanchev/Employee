@@ -48,7 +48,6 @@ namespace FirstCoreApp.Controllers
         // GET: Tasks/Create
         public IActionResult Create(int id)
         {
-            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName");
             ViewData["EmployeeId"] = id;
             return View();
         }
