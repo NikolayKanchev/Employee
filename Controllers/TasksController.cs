@@ -19,9 +19,10 @@ namespace FirstCoreApp.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var employeeContext = _context.Tasks.Include(t => t.Employee);
+            var employeeContext = _context.Tasks.Where(t => t.EmployeeId == id).Include(t => t.Employee);
+            ViewData["EmployeeId"] = id;
             return View(await employeeContext.ToListAsync());
         }
 
@@ -45,9 +46,10 @@ namespace FirstCoreApp.Controllers
         }
 
         // GET: Tasks/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName");
+            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName");
+            ViewData["EmployeeId"] = id;
             return View();
         }
 
@@ -64,7 +66,8 @@ namespace FirstCoreApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName", task.EmployeeId);
+            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName", task.EmployeeId);
+            //ViewData["EmployeeId"] = id;
             return View(task);
         }
 
@@ -81,7 +84,8 @@ namespace FirstCoreApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FullName", task.EmployeeId);
+            ViewData["EmployeeId"] = id;
+
             return View(task);
         }
 
